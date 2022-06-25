@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'Work/css/butterfly.css' %}">
+    <title>Calculation Form</title>
+</head>
+<body>
+    <div class="login-page">
+  <div class="form">
+    <form class="login-form" METHOD="POST" action="Calc_butterfly" enctype="multipart/form-data">
+        {% csrf_token %}
+      <input type="text" id="username" name="username" value="{{username}}" placeholder="username"/>
+      <input type="password" id="pass" name="pass" value="{{password}}" placeholder="password"/>
+        <input type="text" id="first_up" name="first_up"  value="{{first_up}}" placeholder="numerator"/>
+        <input type="text" id="first_dwn" name="first_dwn"  value="{{first_dwn}}" placeholder="denumerator"/>
+        <input type="text" id="second_up" name="second_up"  value="{{second_up}}" placeholder="numerator"/>
+        <input type="text" id="second_dwn" name="second_dwn"  value="{{second_dwn}}" placeholder="denumerator"/>
+        <input type="text" id="ans_up" name="ans_up"  value="{{ans_up}}" placeholder="answer"/>
+        <input type="text" id="ans_dwn" name="ans_dwn"  value="{{ans_dwn}}" placeholder="answer"/>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <br {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div id="choise">
+        <input type="radio" id="summing" name="RB" value="summing" checked> <label id="ForSum" for="summing">summing</label>
+        <input type="radio" id="Subtraction" name="RB" value="Subtraction" > <label id="ForSubtraction"  for="Subtraction">Subtraction</label>
+        </div>
+        <button id="ACTIVATE_FUNC">Calculate with Butterfly method</button>
+      <p id="toReg">Not registered? <a id="toRegLink" href="http://127.0.0.1:8000/">Create an account</a></p>
+      <p id="ToMes">Wanna see your messages? <a id="ToMesLink" href="http://127.0.0.1:8000/Results">Check it</a></p>
+    </form>
+  </div>
+</div>
+</body>
+</html>
